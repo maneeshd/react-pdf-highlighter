@@ -466,7 +466,7 @@ class PdfHighlighter<T_HT: T_Highlight> extends PureComponent<
         range.cloneContents().querySelectorAll('span')
     ).map(span => span.innerText.trim());
     const content = {
-        text: txtList.join(' ')
+        text: txtList.join(' ') || range.toString() || ''
     };
     
     const scaledPosition = this.viewportPositionToScaled(viewportPosition);
