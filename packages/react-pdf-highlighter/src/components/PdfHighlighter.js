@@ -460,10 +460,15 @@ class PdfHighlighter<T_HT: T_Highlight> extends PureComponent<
     const boundingRect = getBoundingRect(rects);
 
     const viewportPosition = { boundingRect, rects, pageNumber: page.number };
-
+    
+    // Introduce space between each line in selection
+    const txtList = Array.from(
+        range.cloneContents().querySelectorAll('span')
+    ).map(span => span.innerText.trim());
     const content = {
-      text: range.toString()
+        text: txtList.join(' ')
     };
+    
     const scaledPosition = this.viewportPositionToScaled(viewportPosition);
 
     this.renderTipAtPosition(
